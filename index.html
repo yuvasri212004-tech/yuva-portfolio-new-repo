@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yuvasri G — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#060910;
+  --bg2:#0d1117;
+  --bg3:#111827;
+  --accent:#7c3aed;
+  --accent2:#a78bfa;
+  --accent3:#c4b5fd;
+  --text:#f0f0f0;
+  --muted:#94a3b8;
+  --border:#1e2740;
+  --card:#0d1421;
+  --glow:rgba(124,58,237,0.15);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(6,9,16,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--accent2);letter-spacing:-0.5px}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--accent2)}
+
+/* SECTIONS */
+section{padding:5rem 2rem;max-width:1000px;margin:0 auto}
+.section-label{font-size:0.75rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent2);margin-bottom:0.75rem}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;color:var(--text);margin-bottom:2.5rem;line-height:1.15}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:6rem;position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:-10%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(124,58,237,0.12) 0%,transparent 70%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:0;right:-5%;width:400px;height:400px;background:radial-gradient(circle,rgba(167,139,250,0.08) 0%,transparent 70%);pointer-events:none}
+.hero-label{font-size:0.8rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent2);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+.hero-label::before{content:'';display:inline-block;width:24px;height:2px;background:var(--accent)}
+.hero-name{font-family:'Syne',sans-serif;font-size:clamp(3rem,9vw,6rem);font-weight:800;line-height:1;letter-spacing:-2px;margin-bottom:1rem}
+.hero-name span{color:var(--accent2)}
+.hero-role{font-size:1.1rem;color:var(--muted);margin-bottom:1.5rem;font-weight:300}
+.hero-bio{max-width:520px;color:var(--muted);font-size:1rem;line-height:1.8;margin-bottom:2.5rem}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{padding:0.7rem 1.6rem;border-radius:6px;font-size:0.9rem;font-weight:500;cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem}
+.btn-primary{background:var(--accent);color:#fff;border:none}
+.btn-primary:hover{background:#6d28d9;transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--accent2);border:1px solid var(--accent)}
+.btn-outline:hover{background:var(--glow);transform:translateY(-2px)}
+.hero-scroll{margin-top:4rem;color:var(--muted);font-size:0.8rem;letter-spacing:0.1em;display:flex;align-items:center;gap:0.5rem}
+.scroll-line{width:40px;height:1px;background:var(--accent)}
+
+/* ABOUT */
+#about .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.about-text p{color:var(--muted);font-size:1rem;line-height:1.9;margin-bottom:1rem}
+.about-stats{display:grid;gap:1rem}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent)}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--accent2)}
+.stat-label{font-size:0.82rem;color:var(--muted)}
+
+/* SKILLS */
+#skills .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem}
+.skill-pill{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center;transition:all 0.2s;cursor:default}
+.skill-pill:hover{border-color:var(--accent);background:var(--glow);transform:translateY(-3px)}
+.skill-icon{font-size:1.5rem;margin-bottom:0.4rem}
+.skill-name{font-size:0.82rem;color:var(--text);font-weight:500}
+.skill-level{font-size:0.7rem;color:var(--muted);margin-top:0.2rem}
+.skills-learning{margin-top:1.5rem;background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(167,139,250,0.05));border:1px solid rgba(124,58,237,0.3);border-radius:10px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.learning-badge{background:var(--accent);color:#fff;font-size:0.7rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:20px;letter-spacing:0.05em;white-space:nowrap}
+.learning-text{color:var(--muted);font-size:0.9rem}
+
+/* EXPERIENCE */
+.timeline{position:relative;padding-left:1.5rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border)}
+.timeline-item{position:relative;margin-bottom:2rem;padding-left:1.5rem}
+.timeline-dot{position:absolute;left:-1.75rem;top:0.35rem;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.timeline-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.5rem}
+.timeline-role{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.2rem}
+.timeline-company{font-size:0.85rem;color:var(--accent2);margin-bottom:0.5rem}
+.timeline-period{font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.4rem}
+.timeline-period::before{content:'';width:16px;height:1px;background:var(--muted)}
+.timeline-desc{font-size:0.9rem;color:var(--muted);line-height:1.7}
+
+/* PROJECTS */
+.projects-grid{display:grid;gap:1.5rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.75rem;transition:all 0.2s;position:relative;overflow:hidden}
+.project-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.project-card::after{content:'';position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle at top right,rgba(124,58,237,0.08),transparent 70%)}
+.project-badge{font-size:0.7rem;font-weight:600;background:rgba(124,58,237,0.15);color:var(--accent2);padding:0.25rem 0.75rem;border-radius:20px;letter-spacing:0.05em;display:inline-block;margin-bottom:0.75rem}
+.project-name{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:0.5rem}
+.project-desc{font-size:0.9rem;color:var(--muted);line-height:1.7;margin-bottom:1rem}
+.tech-stack{display:flex;flex-wrap:wrap;gap:0.4rem}
+.tech-tag{font-size:0.72rem;background:var(--bg3);color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:0.2rem 0.6rem}
+
+/* CERTIFICATIONS */
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.75rem;display:flex;gap:1.25rem;align-items:flex-start;transition:all 0.2s}
+.cert-card:hover{border-color:var(--accent)}
+.cert-icon{width:48px;height:48px;border-radius:10px;background:rgba(124,58,237,0.15);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.cert-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.3rem}
+.cert-issuer{font-size:0.85rem;color:var(--accent2);margin-bottom:0.25rem}
+.cert-type{font-size:0.78rem;color:var(--muted)}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.contact-intro{color:var(--muted);font-size:1rem;line-height:1.8;margin-bottom:1.5rem}
+.contact-links{display:flex;flex-direction:column;gap:0.75rem}
+.contact-link{display:flex;align-items:center;gap:0.75rem;color:var(--muted);text-decoration:none;font-size:0.9rem;padding:0.75rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:8px;transition:all 0.2s}
+.contact-link:hover{border-color:var(--accent);color:var(--accent2)}
+.contact-link-icon{font-size:1rem;width:20px;text-align:center}
+.contact-form{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.75rem}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:0.8rem;color:var(--muted);margin-bottom:0.4rem;letter-spacing:0.05em}
+.form-group input,.form-group textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:0.7rem 1rem;color:var(--text);font-size:0.9rem;font-family:inherit;outline:none;transition:border-color 0.2s}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent)}
+.form-group textarea{height:100px;resize:none}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--muted);font-size:0.82rem}
+footer span{color:var(--accent2)}
+
+/* DIVIDER */
+.section-divider{border:none;border-top:1px solid var(--border);margin:0 auto;max-width:1000px}
+
+/* PROFILE PHOTO */
+.hero-photo-wrapper{text-align:center;margin-bottom:2rem}
+.hero-photo{width:160px;height:160px;border-radius:50%;object-fit:cover;border:4px solid var(--accent);box-shadow:0 8px 32px rgba(99,102,241,0.3);transition:transform 0.3s ease,box-shadow 0.3s ease}
+.hero-photo:hover{transform:scale(1.05);box-shadow:0 12px 48px rgba(99,102,241,0.4)}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero-name{font-size:3rem;letter-spacing:-1px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">YG.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  
+  <!-- Profile Photo -->
+  <div class="hero-photo-wrapper">
+    <img src="photo.jpg" alt="Yuvasri G" class="hero-photo">
+  </div>
+  
+  <div class="hero-label">Available for opportunities</div>
+  <h1 class="hero-name">Yuvasri<br><span>G.</span></h1>
+  <p class="hero-role">Software Developer &nbsp;·&nbsp; BCA → MCA</p>
+  <p class="hero-bio">I craft web applications with clean code and a curious mind — currently exploring the frontier of Machine Learning & Artificial Intelligence.</p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects →</a>
+    <a href="resume.pdf" target="_blank" class="btn btn-outline">📄 View Resume</a>
+    <a href="#contact" class="btn btn-outline">Get in touch</a>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div> Scroll to explore</div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who I am</div>
+  <h2 class="section-title">About Me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Hi! I'm Yuvasri G, a passionate Software Developer currently pursuing my Master's in Computer Applications (MCA) after completing my Bachelor's in Computer Applications (BCA). I love building meaningful digital experiences — from simple expense trackers to full-scale AI-enhanced platforms.</p>
+      <p>My journey started with web development fundamentals, and I've since grown into full-stack development, cloud deployments, and I'm now diving deep into Machine Learning and AI. I'm a quick learner with strong teamwork and communication skills, always eager to take on new challenges.</p>
+      <p>I believe in learning by building — every project teaches me something new, and I'm excited to create technology solutions that make a real impact.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Full-stack projects delivered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">BCA → MCA</div>
+        <div class="stat-label">Academic journey in Computer Applications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">ML & AI</div>
+        <div class="stat-label">Currently learning & exploring</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">What I know</div>
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-pill">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">HTML</div>
+      <div class="skill-level">Proficient</div>
+    </div>
+    <div class="skill-pill">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">CSS</div>
+      <div class="skill-level">Proficient</div>
+    </div>
+    <div class="skill-pill">
+      <div class="skill-icon">⚡</div>
+      <div class="skill-name">JavaScript</div>
+      <div class="skill-level">Intermediate</div>
+    </div>
+    <div class="skill-pill">
+      <div class="skill-icon">⚛️</div>
+      <div class="skill-name">React JS</div>
+      <div class="skill-level">Intermediate</div>
+    </div>
+    <div class="skill-pill">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-name">Python</div>
+      <div class="skill-level">Advanced</div>
+    </div>
+    <div class="skill-pill">
+      <div class="skill-icon">🚀</div>
+      <div class="skill-name">Node.js</div>
+      <div class="skill-level">Intermediate</div>
+    </div>
+    <div class="skill-pill">
+      <div class="skill-icon">🔥</div>
+      <div class="skill-name">Flask</div>
+      <div class="skill-level">Intermediate</div>
+    </div>
+    <div class="skill-pill">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">SQL</div>
+      <div class="skill-level">Intermediate</div>
+    </div>
+    <div class="skill-pill">
+      <div class="skill-icon">☁️</div>
+      <div class="skill-name">Cloudinary</div>
+      <div class="skill-level">Learning</div>
+    </div>
+    <div class="skill-pill">
+      <div class="skill-icon">📦</div>
+      <div class="skill-name">Bootstrap</div>
+      <div class="skill-level">Proficient</div>
+    </div>
+    <div class="skill-pill">
+      <div class="skill-icon">🤝</div>
+      <div class="skill-name">Teamwork</div>
+      <div class="skill-level">Strong</div>
+    </div>
+    <div class="skill-pill">
+      <div class="skill-icon">💬</div>
+      <div class="skill-name">Communication</div>
+      <div class="skill-level">Excellent</div>
+    </div>
+    <div class="skill-pill">
+      <div class="skill-icon">🧠</div>
+      <div class="skill-name">Problem Solving</div>
+      <div class="skill-level">Strong</div>
+    </div>
+  </div>
+  <div class="skills-learning">
+    <div class="learning-badge">Currently Learning</div>
+    <p class="learning-text">Machine Learning & Artificial Intelligence — exploring models, data pipelines, and intelligent systems.</p>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">My journey</div>
+  <h2 class="section-title">Experience</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-role">MCA Student & Project Developer</div>
+        <div class="timeline-company">MCA Programme — Computer Applications</div>
+        <div class="timeline-period">2024 – Present</div>
+        <p class="timeline-desc">Leading development of an AI-enhanced e-learning platform and a smart student accommodation management hub. Working with React, Python Flask, Bootstrap, and cloud integrations. Deepening expertise in full-stack architecture and beginning ML/AI exploration.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-role">BCA Graduate & Mini Project Lead</div>
+        <div class="timeline-company">BCA Programme — Computer Applications</div>
+        <div class="timeline-period">2021 – 2024</div>
+        <p class="timeline-desc">Completed Bachelor of Computer Applications with a focus on web development. Built a full-stack Expense Tracker System as the mini project using HTML, CSS, JavaScript, Node.js, Express, and SQL — covering end-to-end development from UI to database.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">What I've built</div>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-badge">MAIN PROJECT · MCA</div>
+      <div class="project-name">Student Academic Hub — Accommodation & Career Planning Platform</div>
+      <p class="project-desc">A comprehensive platform designed for students pursuing abroad education, integrating smart accommodation booking, career planning guidance, and administrative tools. Features cloud-powered media handling via Cloudinary with a robust Python Flask backend and modern React frontend.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">HTML</span>
+        <span class="tech-tag">CSS</span>
+        <span class="tech-tag">React JS</span>
+        <span class="tech-tag">Python Flask</span>
+        <span class="tech-tag">Cloud (Cloudinary)</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-badge">MINI PROJECT · MCA</div>
+      <div class="project-name">AI Analytics System for Student Performance Prediction</div>
+      <p class="project-desc">An intelligent AI-powered analytics platform that predicts student academic performance using machine learning algorithms. Built with a modern React frontend and Python Flask API backend, offering data-driven insights and personalized learning recommendations.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">HTML</span>
+        <span class="tech-tag">CSS</span>
+        <span class="tech-tag">React JS</span>
+        <span class="tech-tag">Python Flask</span>
+        <span class="tech-tag">Machine Learning</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-badge">MINI PROJECT · BCA</div>
+      <div class="project-name">Expense Tracker System</div>
+      <p class="project-desc">A full-stack personal finance tracker enabling users to log, categorize, and analyze expenses. Features a clean UI with real-time data persistence, built on Node.js + Express with an SQL database.</p>
+      <div class="tech-stack">
+        <span class="tech-tag">HTML</span>
+        <span class="tech-tag">CSS</span>
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">Express</span>
+        <span class="tech-tag">SQL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Recognition</div>
+  <h2 class="section-title">Certifications</h2>
+  <div class="cert-card">
+    <div class="cert-icon">🏆</div>
+    <div>
+      <div class="cert-name">International Level Seminar — E-Commerce</div>
+      <div class="cert-issuer">International Academic Seminar</div>
+      <div class="cert-type">Attendee · Online · E-Commerce Trends & Digital Business</div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Let's connect</div>
+  <h2 class="section-title">Get in Touch</h2>
+  <div class="contact-grid">
+    <div>
+      <p class="contact-intro">I'm open to collaborations, internships, and exciting opportunities. Feel free to reach out through any of the links below — I'd love to connect!</p>
+      <div class="contact-links">
+        <a class="contact-link" href="tel:+919487922953">
+          <span class="contact-link-icon">📱</span>
+          +91 94879 22953
+        </a>
+        <a class="contact-link" href="mailto:yuvasri212004@gmail.com">
+          <span class="contact-link-icon">✉</span>
+          yuvasri212004@gmail.com
+        </a>
+        <a class="contact-link" href="https://github.com/yuvasri212004" target="_blank">
+          <span class="contact-link-icon">⌥</span>
+          github.com/yuvasri212004
+        </a>
+        <a class="contact-link" href="https://linkedin.com/in/yuvasri-g-987a672a3" target="_blank">
+          <span class="contact-link-icon">in</span>
+          linkedin.com/in/yuvasri-g-987a672a3
+        </a>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="e.g. Ravi Kumar">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Hey Yuvasri, I'd love to connect about..."></textarea>
+      </div>
+      <a href="mailto:yuvasri212004@gmail.com" class="btn btn-primary" style="width:100%;justify-content:center;display:flex">Send Message →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & built by <span>Yuvasri G</span> · 2024 · All rights reserved</p>
+</footer>
+
+</body>
+</html>
